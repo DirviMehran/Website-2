@@ -1,6 +1,3 @@
-Assistant
-<!-- Place this above </body> in your main HTML file -->
-
 <div id="chatbot-container">
     <div id="chatbot-header">
         Virtual Assistant - Dr. Mehran Ullah
