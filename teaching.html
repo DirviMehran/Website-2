@@ -49,9 +49,10 @@
         border: 2px solid #ffb84d;
         border-radius: 30px;
         animation: flash 1.5s infinite;
-        margin: 20px auto;
+        margin: 20px auto; /* This centers just the flashing box */
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         font-size: 14px;
+        text-align: center; /* Ensures the text inside the box is centered */
     }
 
     .flashing-box a {
@@ -68,13 +69,6 @@
         0% { opacity: 1; }
         50% { opacity: 0.5; }
         100% { opacity: 1; }
-    }
-
-    /* Center the box if needed */
-    #teaching {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
     }
 </style>
 
