@@ -1,13 +1,13 @@
-let lastTopic = '';  // Track the last selected topic
-
 function openChatbot() {
+    console.log("openChatbot called");
     document.getElementById('chatbot-container').style.display = 'flex';
     resetChat();
 }
 
 function closeChatbot() {
+    console.log("closeChatbot called");
     document.getElementById('chatbot-container').style.display = 'none';
-    resetChat();  // Reset chat when closed
+    resetChat(); // Reset chat when closed
 }
 
 function resetChat() {
@@ -15,11 +15,11 @@ function resetChat() {
         <div class="bot-message">Hello! I'm Dr. Mehran Ullah's Virtual Assistant. How can I assist you today?</div>
         ${getOptionsHTML()}
     `;
-    lastTopic = '';  // Reset topic on close
+    lastTopic = '';
 }
 
 function sendPredefinedMessage(topic) {
-    lastTopic = topic;  // Store selected topic
+    lastTopic = topic;
     addMessage('user', formatTopicForDisplay(topic));
     const response = getBotResponse(topic);
     setTimeout(() => {
@@ -82,3 +82,8 @@ function scrollChatToBottom() {
     const messages = document.getElementById('chatbot-messages');
     messages.scrollTop = messages.scrollHeight;
 }
+
+// Attach functions to the global window object so inline event handlers can access them:
+window.openChatbot = openChatbot;
+window.closeChatbot = closeChatbot;
+window.sendPredefinedMessage = sendPredefinedMessage;
