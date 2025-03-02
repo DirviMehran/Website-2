@@ -43,13 +43,18 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     fetch('chatbot.html')
-      .then(response => response.text())
+      .then(response => {
+        console.log('Response status:', response.status);
+        return response.text();
+      })
       .then(html => {
+        console.log('Chatbot HTML loaded:', html);
         document.body.insertAdjacentHTML('beforeend', html);
       })
       .catch(error => console.error('Error loading chatbot:', error));
   });
 </script>
+
 
 </body>
 </html>
