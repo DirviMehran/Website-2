@@ -88,3 +88,46 @@ footer {
   padding: 10px 0;
   margin-top: 20px;
 }
+
+
+.profile-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.profile-links a {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 3D effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.profile-links img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers the whole circle */
+}
+
+.profile-links a:hover {
+    transform: translateY(-5px); /* Hover effect - slight lift */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Deeper shadow on hover */
+}
+
+/* Optional - Add inner glow for slight definition */
+.profile-links a::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2); /* Inner shadow */
+    pointer-events: none;
+}
