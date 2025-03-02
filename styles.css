@@ -10,12 +10,13 @@ body {
 
 header {
     text-align: center;
-    background: url('header-background.jpg') center/cover;
-    color: #fff;
+    background: #1a1a2e;
+    color: #f8b400;
     padding: 2rem 0;
-    background-color: rgba(0,45,98,0.85); /* Tinted overlay */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    border-bottom: 4px solid #f8b400;
 }
+
 
 
 
