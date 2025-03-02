@@ -33,30 +33,55 @@
       <li>Introduction to Data Science (KFUPM, Saudi Arabia)</li>
     </ul>
 
+
+    /* Flash Card */
     <div class="flashing-box">
     <p>If you are an <strong>Introduction to Data Science</strong> student and need extra support and a basic lesson plan, 
     <a href="LessonPlanBot.html">please click here</a>.</p>
-</div>
-
-<style>
+</div>  
+  <style>
     .flashing-box {
+        display: inline-block;
+        padding: 8px 15px;
+        background-color: #ffebcc;
+        color: #8a4b00;
         font-weight: bold;
-        text-align: center;
-        background-color: #f8d7da;
-        color: #721c24;
-        padding: 10px;
-        margin-top: 15px;
-        border: 2px solid #f5c6cb;
+        border: 3px solid #D35400;
+        border-radius: 30px;
         animation: flash 1.5s infinite;
+        text-align: center;
+        margin: 20px auto;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        font-size: 16px;
+    }
+
+    .flashing-box a {
+        color: #0056b3;
+        text-decoration: underline;
+        font-weight: bold;
+    }
+
+    .flashing-box a:hover {
+        text-decoration: underline;
     }
 
     @keyframes flash {
         0% { opacity: 1; }
-        50% { opacity: 0; }
+        50% { opacity: 0.5; }
         100% { opacity: 1; }
+    }
+
+    /* Center the box if needed */
+    #teaching {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 </style>
 
+
+
+    
   </section>
   <footer>
     <p>&copy; 2025 Dr. Mehran Ullah | University of the West of Scotland</p>
