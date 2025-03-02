@@ -40,20 +40,23 @@
 
 
 
+<!-- At the end of your index.html, before </body> -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    // Fetch the chatbot HTML fragment
     fetch('chatbot.html')
-      .then(response => {
-        console.log('Response status:', response.status);
-        return response.text();
-      })
+      .then(response => response.text())
       .then(html => {
-        console.log('Chatbot HTML loaded:', html);
         document.body.insertAdjacentHTML('beforeend', html);
+        // After inserting the HTML, load the chatbot functions
+        var script = document.createElement('script');
+        script.src = 'chatbot-functions.js';
+        document.body.appendChild(script);
       })
       .catch(error => console.error('Error loading chatbot:', error));
   });
 </script>
+
 
 
 </body>
