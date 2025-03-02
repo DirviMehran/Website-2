@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Personalised Computer Science Learning Plan Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .chat-container {
+            background-color: #ffffff;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            width: 90%;
+            max-width: 800px;
+            padding: 20px;
+        }
+        .chat-header {
+            background-color: #007acc;
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .chatbox {
+            margin-top: 15px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .chat-message {
+            background-color: #e1f5fe;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .chat-question {
+            font-weight: bold;
+            color: #007acc;
+        }
+        button {
+            padding: 10px 16px;
+            margin: 10px 5px 0 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            background-color: #007acc;
+            color: white;
+        }
+        button:hover {
+            background-color: #005f99;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #007acc;
+            color: white;
+            padding: 8px;
+        }
+        td {
+            padding: 8px;
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="chat-header">Personalised Computer Science Learning Plan</div>
+
+    <div id="instructions">
+        <p><strong>Hi, my name is Mahi!</strong> I am your Virtual Teaching Assistant, here to support you in learning Data Science and Coding.</p>
+        <p>This personalised learning guide is designed for students in the <strong>Introduction to Data Science and Coding</strong> module who need extra support.</p>
+        <p>I will ask you a few questions to assess your knowledge. Based on your answers, I will generate a custom learning plan tailored to your needs.</p>
+        <p><strong>How this works:</strong></p>
+        <ul>
+            <li>Dedicate 1-2 hours per day.</li>
+            <li>Each day covers a new topic, increasing in complexity.</li>
+            <li>For each topic, you will research the questions online (videos, articles, etc.).</li>
+        </ul>
+        <p>Click the button below to begin your assessment.</p>
+        <button onclick="startChat()">Let's Begin</button>
+    </div>
+
+    <div class="chatbox hidden" id="chatbox">
+        <div id="question-area"></div>
+        <div id="button-area"></div>
+    </div>
+</div>
+
+<script>
+    const plan = [
+        { topic: "Introduction to Computers", question: "What are the main parts of a computer and their functions?" },
+        { topic: "Operating Systems", question: "What is an operating system, and how does it work?" },
+        { topic: "File Management", question: "How do I create, rename, move, and delete files on my computer?" },
+        { topic: "Keyboard Shortcuts", question: "What are the most useful keyboard shortcuts for Windows?" },
+        { topic: "Internet Basics", question: "How do web browsers and search engines work?" },
+        { topic: "Email & Communication", question: "How do I create and send an email with an attachment?" },
+        { topic: "Review & Quiz", question: "What are 10 basic computer skills everyone should know?" },
+        { topic: "Word Processing", question: "How do I format text and insert images in MS Word/Google Docs?" },
+        { topic: "Spreadsheets", question: "What are basic Excel/Google Sheets formulas and how do I use them?" },
+        { topic: "Presentations", question: "How do I create a PowerPoint/Google Slides presentation?" },
+        { topic: "Software Installation & Updates", question: "How do I install and update software safely?" },
+        { topic: "Computer Security", question: "What are the best practices for keeping my computer secure?" },
+        { topic: "Basic Troubleshooting", question: "How do I fix common computer problems like a slow PC?" },
+        { topic: "Cloud Storage & Backup", question: "How do I use Google Drive/OneDrive to store and share files?" },
+        { topic: "Intro to Coding", question: "What are the basics of programming in Python/Scratch? For example can you launch python?" },
+        { topic: "Basic HTML & CSS", question: "Do I know what HTML is? How do I create a simple webpage using HTML and CSS?" },
+        { topic: "Advanced Excel", question: "What are Excel functions? How do I use diffeernt functions in Excel?" },
+        { topic: "Database Basics", question: "What is a database and how does it work?" },
+        { topic: "Networking Basics", question: "How do computer networks and IP addresses work?" },
+        { topic: "Cybersecurity", question: "What are common online security threats and how can I protect myself?" },
+        { topic: "Advanced Troubleshooting", question: "How do I speed up my computer and manage startup programs?" },
+        { topic: "Automation", question: "What is task automation using macros or scripts?" },
+        { topic: "Graphic Design Basics", question: "What is graphic design? How do I edit images using any tool?" },
+        { topic: "Video Editing Basics", question: "What are the best free tools for editing videos?" },
+        { topic: "Final Project", question: "Ask ChatGPT or any LLM, Create a a good beginner project to apply and imporve my computer skills, I am very new and have started to learning computer from XXX days." },
+        { topic: "Final Review & Quiz", question: "Can I explain key computer concepts to someone else?" },
+        { topic: "Certification & Next Steps", question: "Ask ChatGPT or any LLM, I have completed a basic learning plan designed to imporve my computing skills, What are the best next steps for improving my skills further?" },
+        { topic: "Enjoy, keep leanring and shining", question: "Treat yourself — you earned it!" }
+    ];
+
+    let currentDay = 0;
+
+    function startChat() {
+        document.getElementById('instructions').classList.add('hidden');
+        document.getElementById('chatbox').classList.remove('hidden');
+        askQuestion();
+    }
+
+    function askQuestion() {
+        document.getElementById("question-area").innerHTML = `<div class="chat-message chat-question">Day ${currentDay + 1}: Do you know about "${plan[currentDay].topic}"?</div>`;
+        document.getElementById("button-area").innerHTML = `
+            <button onclick="handleResponse(true)">I Know This</button>
+            <button onclick="handleResponse(false)">I Don't Know This</button>
+        `;
+    }
+
+    function handleResponse(knowsTopic) {
+        if (knowsTopic) {
+            currentDay++;
+            currentDay < plan.length ? askQuestion() : showCompletionMessage();
+        } else {
+            showLessonPlan();
+        }
+    }
+
+    function showLessonPlan() {
+        const questionArea = document.getElementById("question-area");
+        const buttonArea = document.getElementById("button-area");
+
+        const remainingPlan = plan.slice(currentDay);
+        questionArea.innerHTML = `<div class="chat-message">Here’s your personalised learning plan with a progress tracker:</div>`;
+
+        const table = document.createElement("table");
+        table.innerHTML = `
+            <tr>
+                <th>Day</th>
+                <th>Topic</th>
+                <th>Searchable Question</th>
+                <th>Progress</th>
+            </tr>
+        `;
+
+        remainingPlan.forEach((item, index) => {
+            table.innerHTML += `
+                <tr id="row-${index + 1}">
+                    <td>${index + 1}</td>
+                    <td>${item.topic}</td>
+                    <td>${item.question}</td>
+                    <td><button onclick="markDone(${index + 1})">Mark as Done</button></td>
+                </tr>
+            `;
+        });
+
+        questionArea.appendChild(table);
+        buttonArea.innerHTML = '';
+    }
+
+    function markDone(dayNumber) {
+        const row = document.getElementById(`row-${dayNumber}`);
+        row.cells[3].innerHTML = "✅ Completed";
+    }
+
+    function showCompletionMessage() {
+        document.getElementById("question-area").innerHTML = "<div class='chat-message'>🎉 Congratulations! You've completed your assessment.</div>";
+        document.getElementById("button-area").innerHTML = '';
+    }
+</script>
+
+</body>
+</html>
