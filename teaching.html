@@ -34,35 +34,37 @@
     </ul>
 
 
-    /* Flash Card */
+
+
     <div class="flashing-box">
     <p>If you are an <strong>Introduction to Data Science</strong> student and need extra support and a basic lesson plan, 
     <a href="LessonPlanBot.html">please click here</a>.</p>
-</div>  
-  <style>
+</div>
+
+<style>
     .flashing-box {
         display: inline-block;
         padding: 8px 15px;
         background-color: #ffebcc;
         color: #8a4b00;
         font-weight: bold;
-        border: 3px solid #D35400;
+        border: 2px solid #ffb84d;
         border-radius: 30px;
         animation: flash 1.5s infinite;
         text-align: center;
         margin: 20px auto;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .flashing-box a {
         color: #0056b3;
-        text-decoration: underline;
+        text-decoration: none;  /* This removes underline */
         font-weight: bold;
     }
 
     .flashing-box a:hover {
-        text-decoration: underline;
+        text-decoration: underline;  /* Optional: underline on hover */
     }
 
     @keyframes flash {
@@ -78,6 +80,7 @@
         align-items: center;
     }
 </style>
+
 
 
 
