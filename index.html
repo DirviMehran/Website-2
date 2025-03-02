@@ -53,23 +53,17 @@
   <!-- Your page content goes here -->
 
   <!-- Chatbot Loader Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      fetch('chatbot.html')  // Update filename if needed (e.g., 'chatnot.html')
-        .then(response => response.text())
-        .then(html => {
-          // Insert the chatbot HTML at the end of the body
-          document.body.insertAdjacentHTML('beforeend', html);
-        })
-        .catch(error => console.error('Error loading chatbot:', error));
-    });
-  </script>
+ <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    fetch('chatbot.html')
+      .then(response => response.text())
+      .then(html => {
+        document.body.insertAdjacentHTML('beforeend', html);
+      })
+      .catch(error => console.error('Error loading chatbot:', error));
+  });
+</script>
 
-  <!-- If you have additional chatbot JavaScript functions (openChatbot, closeChatbot, etc.),
-       ensure they are included here or in another linked JS file -->
-  <script src="chatbot-functions.js"></script>
-</body>
-</html>
 
 </body>
 </html>
