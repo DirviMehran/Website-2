@@ -10,9 +10,10 @@ body {
 
 header {
     text-align: center;
-    background: linear-gradient(135deg, #004080, #007acc);
+    background: url('header-background.jpg') center/cover;
     color: #fff;
     padding: 2rem 0;
+    background-color: rgba(0,45,98,0.85); /* Tinted overlay */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
